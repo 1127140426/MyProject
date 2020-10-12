@@ -48,15 +48,15 @@
 					  <form class="mui-input-group">
 					      <div class="mui-input-row">
 					          <label>用户名</label>
-					      <input type="text" class="mui-input-clear" placeholder="地点">
+					      <input type="text" class="mui-input-clear" placeholder="用户名" id="username">
 					      </div>
 					      <div class="mui-input-row">
 					          <label>密码</label>
-					          <input type="text" class="mui-input-clear" placeholder="电话">
+					          <input type="text" class="mui-input-clear" placeholder="电话" id="phone">
 					      </div>
 					      <div class="mui-button-row">
-					              <button type="button" class="mui-btn mui-btn-primary" >确认</button>
-					              <button type="button" class="mui-btn mui-btn-danger" >取消</button>
+					              <button type="button" class="mui-btn mui-btn-primary" id="confirm">确认</button>
+					              <button type="button" class="mui-btn mui-btn-danger" id="concel">取消</button>
 					       </div>
 					  </form>
 					</div>
@@ -67,6 +67,32 @@
 		<script src="js/mui.js"></script>
 		<script type="text/javascript">
 			mui.init()
+			document.getElementById('popover').style.visibility = 'visible';
+
+			document.getElementById('confirm').addEventListener('click', function() {
+				//document.getElementById('popover').style.visibility = 'visible';
+				 if (!document.getElementById('username').value || !document.getElementById('phone').value) {
+					 return alert('请输入用户名和号码！')
+				 }
+				 var tml = `<a class="mui-navigate-right" href="#">${document.getElementById('username').value}</a>
+							<div class="mui-collapse-content">
+								<p>电话：${ document.getElementById('phone').value}</p>
+								<p>地址：重庆市</p>
+							</div>
+						 `;
+				 var newLi = document.createElement('li');
+				 newLi.className = 'mui-table-view-cell mui-collapse'
+				 newLi.innerHTML = tml;
+				 document.getElementsByTagName('ul')[0].insertBefore(newLi, document.getElementById('openPopover'))
+				 mui(".mui-popover").popover('hide');
+				 
+				/* mui('.bottomPopover').popover('hide',[,anchor]);
+				 document.getElementById('popover').style.visibility = 'hidden'; */
+			 })
+			 document.getElementById('concel').addEventListener('tap',function(){
+				  mui(".mui-popover").popover('hide');
+			 })
+			// document.getElementById('popover').style.visibility = 'visible'
 		</script>
 	</body>
 
