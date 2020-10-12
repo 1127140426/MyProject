@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<div class="mui-content">
+			<div style="margin-top: 5px;">
+				<p style="margin-left: 40%;font-size: 16px;color: #000000;">您的联系人</p>
+			</div>
+			<div id="infomation">
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell mui-collapse">
+						<a class="mui-navigate-right" href="#">张三</a>
+						<div class="mui-collapse-content">
+							<p>电话：788855</p>
+							<p>地址：重庆市</p>
+						</div>
+					</li>
+					<li class="mui-table-view-cell mui-collapse">
+						<a class="mui-navigate-right" href="#">李四</a>
+						<div class="mui-collapse-content">
+							<p>电话：788855</p>
+							<p>地址：重庆市</p>
+						</div>
+					</li>
+					<li class="mui-table-view-cell mui-collapse">
+						<a class="mui-navigate-right" href="#">王五</a>
+						<div class="mui-collapse-content">
+							<p>电话：788855</p>
+							<p>地址：重庆市</p>
+						</div>
+					</li>
+					<li class="mui-table-view-cell mui-collapse">
+						<a class="mui-navigate-right" href="#">赵六</a>
+						<div class="mui-collapse-content">
+							<p>电话：788855</p>
+							<p>地址：重庆市</p>
+						</div>
+					</li>
+					<a href="#popover" id="openPopover" class="mui-btn mui-btn-primary mui-btn-block">新增联系人</a>
+					<div id="popover" class="mui-popover">
+					  <form class="mui-input-group">
+					      <div class="mui-input-row">
+					          <label>用户名</label>
+					      <input type="text" class="mui-input-clear" placeholder="地点">
+					      </div>
+					      <div class="mui-input-row">
+					          <label>密码</label>
+					          <input type="text" class="mui-input-clear" placeholder="电话">
+					      </div>
+					      <div class="mui-button-row">
+					              <button type="button" class="mui-btn mui-btn-primary" >确认</button>
+					              <button type="button" class="mui-btn mui-btn-danger" >取消</button>
+					       </div>
+					  </form>
+					</div>
+				</ul>
+			</div>
+			 
+		</div>
+		<script src="js/mui.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+	</body>
+
+</html>

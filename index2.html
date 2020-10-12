@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+	
+	<style type="text/css">
+		#loginFirst{
+			margin-top: 11px;
+			font-size: 18px;
+			color: #EB7350;
+		}
+	</style>
+    
+  </head>
+  <body>
+	  
+	 <div class = "mui-content">
+      <!-- 主页面容器 -->
+	  <div class="mui-inner-wrap">
+		  <nav id="bar" class="mui-bar mui-bar-tab">  
+			 <a class="mui-tab-item mui-active" href="tab-info.html" data-id="info">  
+				 <span class="mui-icon mui-icon-chatbubble"></span>  
+				 <span class="mui-tab-label">消息</span>  
+			 </a>  
+			 <a class="mui-tab-item" href="tab-list.html" data-id="list">  
+				 <span class="mui-icon mui-icon-list"></span>  
+				 <span class="mui-tab-label">通讯录</span>  
+			 </a>  
+			 <a class="mui-tab-item" href="tab-device.html" data-id="device">  
+				 <span class="mui-icon mui-icon-gear"></span>  
+				 <span class="mui-tab-label">设备</span>  
+			 </a>  
+			<!-- <a class="mui-tab-item" href="tab-star.html" data-id="star">  
+				 <span class="mui-icon mui-icon-star"></span>  
+				 <span class="mui-tab-label">设置</span>  
+			 </a>  -->
+		 </nav>  
+			  
+	  </div>
+	</div>
+	
+	<script src="js/mui.js"></script>
+	<script type="text/javascript">
+		mui.init();
+		
+		//此方法用于解决子页面返回问题
+		/* mui.back=function(){
+			var self = plus.webview.currentWebview();
+			 var opener = self.opener();
+			 opener.evalJS('mui.back();');
+		}; */
+       /* mui.init({
+          preloadPages:[
+        	{
+        	  url:'search.html',
+        	  id:'search',
+        	  styles:{},//窗口参数
+        	  extras:{},//自定义扩展参数
+        	  subpages:[{},{}]//预加载页面的子页面
+        	},
+			
+			{
+			  url:'user.html',
+			  id:'user'
+			}
+          ]
+        }); */
+        
+        mui.plusReady(function() {  
+			
+			var self = plus.webview.currentWebview();  
+			var current = '';  
+			
+			var styles = {
+				top: '0px',  
+				bottom: '51px'
+			};
+			var tabsConfig = {  
+				info: {  
+					url: 'info.html',  
+					styles: styles,  
+					default: true  
+				},  
+				list: {  
+					url: 'list.html',  
+					styles: styles  
+				},  
+				device: {  
+					url: 'device.html',  
+					styles: styles 
+				}/* ,  
+				star: {  
+					url: 'star.html',  
+					styles: styles 
+				}  */
+			};  
+			var tabs = {};  
+			for (id in tabsConfig) {  
+				tabs[id] = plus.webview.create(tabsConfig[id].url, id, tabsConfig[id].styles);  
+				if (tabsConfig[id]['default']) {  
+					self.append(tabs[id]);  
+					current = id;  
+				}  
+			
+			
+			}  
+			
+			mui('#bar').on('tap', 'a', function(e) {  
+				if (current == this.dataset.id) {  
+					mui.fire(tabs[current], 'scroll2top');  
+					return;  
+				}  
+				tabs[this.dataset.id].show();  
+				tabs[current].hide();  
+				current = this.dataset.id;  
+			});  
+		});  
+		
+		         
+	</script>  
+    </body>  
+</html>  
+</body>
+</html>

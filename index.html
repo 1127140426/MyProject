@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.css" rel="stylesheet" />
+	</head>
+	<style type="text/css">
+		
+		#login{
+			
+		}
+	</style>
+
+	<body>
+		<div class="mui-content" >
+			<div id="login">
+				<p style="margin-left: 40%;font-size: 24pt;margin-top: 10pt;color: #000000;">登&nbsp;&nbsp录</p>
+			</div>
+			<div id="text" style="margin-top: 10pt;">
+				<form class="mui-input-group">
+				    <div class="mui-input-row">
+				        <label>用户名</label>
+				    <input type="text" class="mui-input-clear" placeholder="请输入用户名">
+				    </div>
+				    <div class="mui-input-row">
+				        <label>密码</label>
+				        <input type="password" class="mui-input-password" placeholder="请输入密码">
+				    </div>
+					<div class="mui-input-row">
+					    <label>自动登录</label>
+					    <div class="mui-switch mui-active" >
+					    	<div class="mui-switch-handle"></div>
+					    </div>
+					</div>
+				    <div class="mui-button-row">
+				        <button type="button" class="mui-btn mui-btn-primary" id="confirm" >确认登录</button>
+						
+				    </div>
+				</form>
+			</div>
+			
+			
+			  
+			<div id="forget" style="margin-left: 30%;margin-top: 30px;clear: both;">
+				<span><a  target="_blank" class="forget">注册账号</a></span>|<span><a target="_blank" class="forget">忘记密码</a></span>
+			</div>
+		</div>
+		
+		
+		<script src="js/mui.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			document.getElementById('confirm').addEventListener('tap',function(){
+				mui.openWindow({
+				    url:'index2.html',
+				    id:'index2',
+				   
+				    extras:{
+				      
+				    },
+				    createNew:false,//是否重复创建同样id的webview，默认为false:不重复创建，直接显示
+				    show:{
+				      autoShow:true,//页面loaded事件发生后自动显示，默认为true
+				      aniShow:'slide-in-right'//页面显示动画，默认为”slide-in-right“；
+				    }
+				})
+			})
+			var forgets = document.getElementsByClassName('forget');
+			for (var i = 0; i < forgets.length; i++) {
+				forgets[i].addEventListener('tap',function(){
+					mui.openWindow({
+					    url:'register.html',
+					    id:'register',
+					   
+					    extras:{
+					      
+					    },
+					    createNew:false,//是否重复创建同样id的webview，默认为false:不重复创建，直接显示
+					    show:{
+					      autoShow:true,//页面loaded事件发生后自动显示，默认为true
+					      aniShow:'slide-in-right'//页面显示动画，默认为”slide-in-right“；
+					    }
+					})
+				})
+			}
+			
+		</script>
+	</body>
+
+</html>
