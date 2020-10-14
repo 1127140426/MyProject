@@ -9,10 +9,11 @@
 	</head>
 
 	<body>
+		<header class="mui-bar mui-bar-nav">
+			<h1 class="mui-title">联系人</h1>
+		</header>
 		<div class="mui-content">
-			<div style="margin-top: 5px;">
-				<p style="margin-left: 40%;font-size: 16px;color: #000000;">您的联系人</p>
-			</div>
+			
 			<div id="infomation">
 				<ul class="mui-table-view">
 					<li class="mui-table-view-cell mui-collapse">
@@ -66,13 +67,20 @@
 		</div>
 		<script src="js/mui.js"></script>
 		<script type="text/javascript">
-			mui.init()
+			mui.init();
+			//此方法用于解决子页面返回问题
+			mui.back=function(){
+				var self = plus.webview.currentWebview();
+				var opener = self.opener();
+				opener.evalJS('mui.back();');
+			};
 			document.getElementById('popover').style.visibility = 'visible';
 
 			document.getElementById('confirm').addEventListener('click', function() {
 				//document.getElementById('popover').style.visibility = 'visible';
 				 if (!document.getElementById('username').value || !document.getElementById('phone').value) {
-					 return alert('请输入用户名和号码！')
+					 plus.ui.toast("请输入用户名和号码");
+					 return;
 				 }
 				 var tml = `<a class="mui-navigate-right" href="#">${document.getElementById('username').value}</a>
 							<div class="mui-collapse-content">

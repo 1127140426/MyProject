@@ -9,28 +9,41 @@
 	</head>
 
 	<body>
+		<header class="mui-bar mui-bar-nav">
+			<h1 class="mui-title">最近消息</h1>
+			 <a  class="mui-action-menu mui-icon mui-icon-plusempty mui-pull-right" id="login"></a>
+		</header>
 		<div class="mui-content">
 			
-			<div id="fun" style="margin-top: 5px;">
-				
-				<p id="text" style="font-size: 18px;text-align: center;color: red"></p>
+			<div class="mui-slider">
+			  <div class="mui-slider-group mui-slider-loop">
+			    <!--支持循环，需要重复图片节点-->
+			    <div class="mui-slider-item mui-slider-item-duplicate"><a href="#"><img src="picture/timg4.jpg" width="200" height="260" /></a></div>
+			    <div class="mui-slider-item"><a href="#"><img src="picture/timg.jpg" width="200" height="260"/></a></div>
+			    <div class="mui-slider-item"><a href="#"><img src="picture/timg2.jpg" width="200" height="260" /></a></div>
+			    <div class="mui-slider-item"><a href="#"><img src="picture/timg3.jpg" width="200" height="260" /></a></div>
+			    <div class="mui-slider-item"><a href="#"><img src="picture/timg4.jpg" width="200" height="260" /></a></div>
+			    <!--支持循环，需要重复图片节点-->
+			    <div class="mui-slider-item mui-slider-item-duplicate"><a href="#"><img src="picture/timg.jpg" /></a></div>
+			  </div>
 			</div>
 			
 			
+			<div id="fun">
+				<p id="text" style="font-size: 18px;text-align: center;color: red"></p>
+			</div>
+			
 			<div>
 				<ul class="mui-table-view">
-				    <li class="mui-table-view-cell detail">家长群
-				        <span class="mui-badge mui-badge-primary">3</span>
+				    <li class="mui-table-view-cell info">
+				        <a class="mui-navigate-right">重大2018就业信息</a>
 				    </li>
-				    <li class="mui-table-view-cell detail">班群
-				        <span class="mui-badge mui-badge-success">5</span>
+				    <li class="mui-table-view-cell info">
+				        <a class="mui-navigate-right">重大2019就业信息</a>
 				    </li>
-				    <li class="mui-table-view-cell detail">健身群
-				        <span class="mui-badge">13</span>
+				    <li class="mui-table-view-cell info">
+				        <a class="mui-navigate-right">重大2020就业信息</a>
 				    </li>
-					<li class="mui-table-view-cell detail">喝茶群
-					    <span class="mui-badge">9</span>
-					</li>
 				</ul>
 			</div>
 			
@@ -40,7 +53,69 @@
 		<script src="js/mui.js"></script>
 		<script src="js/TextAutoScroll.js"></script>
 		<script type="text/javascript">
-			mui.init()
+			mui.init();
+			//此方法用于解决子页面返回问题
+			mui.back=function(){
+				var self = plus.webview.currentWebview();
+				 var opener = self.opener();
+				 opener.evalJS('mui.back();');
+			};
+			//用于轮播图
+			var gallery = mui('.mui-slider');
+			gallery.slider({
+			  interval:5000//自动轮播周期，若为0则不自动播放，默认为0；
+			});
+			var listInfo = document.getElementsByClassName('info');
+			for (var i = 0; i < listInfo.length; i++) {
+				listInfo[i].addEventListener('click',function(){
+					mui.openWindow({
+					    url:'indexDetail.html',
+					    id:'indexDetail',
+					   
+					    createNew:false,//是否重复创建同样id的webview，默认为false:不重复创建，直接显示
+					    show:{
+					      autoShow:true,//页面loaded事件发生后自动显示，默认为true
+					      aniShow:'slide-in-right'//页面显示动画，默认为”slide-in-right“；
+					      //duration:animationTime//页面动画持续时间，Android平台默认100毫秒，iOS平台默认200毫秒；
+					    },
+					   
+					})
+				})
+			}
+			//跳转到登录页
+			document.getElementById('login').addEventListener('tap',function(){
+				mui.openWindow({
+				    url:'login.html',
+				    id:'login',
+				    /* styles:{
+				      top:newpage-top-position,//新页面顶部位置
+				      bottom:newage-bottom-position,//新页面底部位置
+				      width:newpage-width,//新页面宽度，默认为100%
+				      height:newpage-height,//新页面高度，默认为100%
+				      ......
+				    }, */
+				   /* extras:{
+				      .....//自定义扩展参数，可以用来处理页面间传值
+				    }, */
+				    createNew:false,//是否重复创建同样id的webview，默认为false:不重复创建，直接显示
+				    show:{
+				      autoShow:true,//页面loaded事件发生后自动显示，默认为true
+				      aniShow:'slide-in-right'//页面显示动画，默认为”slide-in-right“；
+				      //duration:animationTime//页面动画持续时间，Android平台默认100毫秒，iOS平台默认200毫秒；
+				    },
+				    /* waiting:{
+				      autoShow:true,//自动显示等待框，默认为true
+				      title:'正在加载...',//等待对话框上显示的提示内容
+				      options:{
+				        width:waiting-dialog-widht,//等待框背景区域宽度，默认根据内容自动计算合适宽度
+				        height:waiting-dialog-height,//等待框背景区域高度，默认根据内容自动计算合适高度
+				        ......
+				      }
+				    } */
+				})
+			})
+			
+			
 			document.getElementById('text').innerHTML = "您有最新消息，请注意查收 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;您有最新消息，请注意查收";
 			//中间字体滚动
 			var text = document.getElementById("text");
